@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import {inngest} from "@/lib/inngest/client";
 import {NEWS_SUMMARY_EMAIL_PROMPT, PERSONALIZED_WELCOME_EMAIL_PROMPT} from "@/lib/inngest/prompts";
 import { sendWelcomeEmail } from "@/lib/nodemailer";
@@ -61,9 +60,8 @@ export const sendDailyNewsSummary = inngest.createFunction(
 
         // Step #2: For each user, get watchlist symbols -> fetch news (fallback to general)
         const results = await step.run('fetch-user-news', async () => {
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            const perUser: Array<{ user: any; articles: MarketNewsArticle[] }> = [];
-            for (const user of users as any[]) {
+            const perUser: Array<{ user: UserForNewsEmail; articles: MarketNewsArticle[] }> = [];
+            for (const user of users as UserForNewsEmail[]) {
                 try {
                     const symbols = await getWatchlistSymbolsByEmail(user.email);
                     let articles = await getNews(symbols);
@@ -84,7 +82,7 @@ export const sendDailyNewsSummary = inngest.createFunction(
         });
 
         // Step #3: (placeholder) Summarize news via AI
-        const userNewsSummaries: { user: User; newsContent: string | null }[] = [];
+        const userNewsSummaries: { user: UserForNewsEmail; newsContent: string | null }[] = [];
 
         for (const { user, articles } of results) {
                 try {
