@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Stock Market App | Real-Time Alerts & AI Insights",
+  title: "MarketPulse AI",
   description: "Real-time stock market data with alerts, interactive charts, and AI-powered insights",
 };
 

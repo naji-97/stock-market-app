@@ -14,8 +14,13 @@ const layout = async({ children }: Props) => {
     return (
         <main className='auth-layout'>
             <section className='auth-left-section scrollbar-hide-default'>
-                <Link href={"/"} className='auth-logo'>
-                    <Image src="/assets/icons/logo.svg" alt='logo' width={140} height={32} className='h-8 w-auto' />
+                <Link href={"/"} className='auth-logo relative block h-24 w-64 mt-5'>
+                    <Image
+                        src="/assets/icons/logo2.png"
+                        alt='logo'
+                        fill
+                        className='object-contain'
+                    />
                 </Link>
                 <div className='pb-6 lg:pb-8 flex-1'>{children} </div>
             </section>
@@ -26,7 +31,7 @@ const layout = async({ children }: Props) => {
                     </blockquote>
                     <div className="flex items-center justify-between">
                         <div>
-                            <cite className="auth-testimonial-author">- Ethan R.</cite>
+                            <cite className="auth-testimonial-author">- Naji Ali.</cite>
                             <p className="max-md:text-xs text-gray-500">Retail Investor</p>
                         </div>
                         <div className="flex items-center gap-0.5">
